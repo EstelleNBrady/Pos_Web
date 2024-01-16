@@ -1,6 +1,9 @@
 body{
   color: 222;
 }
+img{
+  max-width: 100%;
+}
 main{
   padding: 10px;
   max-width: 600px;
@@ -21,4 +24,8 @@ header a.logo{
 header nav{
   display:flex;
   gap: 15px;
+}
+
+div.post{
+  display:flex;
 }

@@ -17,7 +17,11 @@ function App() {
           </div>
           <div className="texts">
             <h2>Body Positivity is Healthy</h2>
-            <p>Accepting our bodies as they are, regardless of size, shape, skin tone, gender or physical capabilities is known as body positivity. Body positivity intersects with fitness by recognizing one’s strengths and abilities and approaching fitness with an emphasis on overall health rather than just appearance.</p>
+            <p className="info">
+              <a className="author">Estelle Brady</a>
+              <time>2024-01-16: 16:49</time>
+            </p>
+            <p className="summary">Accepting our bodies as they are, regardless of size, shape, skin tone, gender or physical capabilities is known as body positivity. Body positivity intersects with fitness by recognizing one’s strengths and abilities and approaching fitness with an emphasis on overall health rather than just appearance.</p>
           </div>
         </div>
 
@@ -27,7 +31,11 @@ function App() {
           </div>
           <div className="texts">
             <h2>Body Positivity is Healthy</h2>
-            <p>Accepting our bodies as they are, regardless of size, shape, skin tone, gender or physical capabilities is known as body positivity. Body positivity intersects with fitness by recognizing one’s strengths and abilities and approaching fitness with an emphasis on overall health rather than just appearance.</p>
+            <p className="info">
+              <a className="author">Estelle Brady</a>
+              <time>2024-01-16: 16:49</time>
+            </p>
+            <p className="summary">Accepting our bodies as they are, regardless of size, shape, skin tone, gender or physical capabilities is known as body positivity. Body positivity intersects with fitness by recognizing one’s strengths and abilities and approaching fitness with an emphasis on overall health rather than just appearance.</p>
           </div>
         </div>
 
@@ -38,10 +46,14 @@ function App() {
           </div>
           <div className="texts">
             <h2>Body Positivity is Healthy</h2>
-            <p>Accepting our bodies as they are, regardless of size, shape, skin tone, gender or physical capabilities is known as body positivity. Body positivity intersects with fitness by recognizing one’s strengths and abilities and approaching fitness with an emphasis on overall health rather than just appearance.</p>
+            <p className="info">
+              <a className="author">Estelle Brady</a>
+              <time>2024-01-16: 16:49</time>
+            </p>
+            <p className="summary">Accepting our bodies as they are, regardless of size, shape, skin tone, gender or physical capabilities is known as body positivity. Body positivity intersects with fitness by recognizing one’s strengths and abilities and approaching fitness with an emphasis on overall health rather than just appearance.</p>
           </div>
         </div>
-        
+
     </main>
   );
 }

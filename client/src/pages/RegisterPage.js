@@ -1,6 +1,6 @@
 export default function RegisterPage(){
     return(
-        <form action="">
+        <form className="register">
             <input type="text" placeholder="username"/>
             <input type="password" placeholder="password"/>
             <button>Register</button>

@@ -36,7 +36,6 @@ async function createNewPost(ev){
         data.set('file', files[0]);
 
         ev.preventDefault();
-        console.log(files);
 
 
 

@@ -18,7 +18,7 @@ const secret = 'jfgosduft908erjfklsdf';
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 app.use(express.json());
 app.use(cookieParser());
-
+app.use('/uploads', express.static(__dirname+'/uploads'));
 mongoose.connect('mongodb+srv://blog:ksn3TK8GYLOOxqI1@cluster0.zv4ffnn.mongodb.net/?retryWrites=true&w=majority');
 
 app.post('/register', async (req,res) => {

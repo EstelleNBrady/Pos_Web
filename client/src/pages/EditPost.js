@@ -7,7 +7,7 @@ export default function EditPost(){
     const [summary,setSummary] = useState('');
     const [content,setContent] = useState('');
     const [files, setFiles] = useState('');
-    const [redirect,setRedirect] = useState('');
+    const [redirect,setRedirect] = useState(false);
 
     useEffect(() => {
         fetch('http://localhost:4000/post/'+id)
@@ -21,16 +21,24 @@ export default function EditPost(){
         });
     }, []);
 
-    function updatePost(ev){
+    async function updatePost(ev){
         ev.preventDefault();
         const data = new FormData();
-        fetch('http://localhost:4000/post', {
+        data.set('title', title);
+        data.set('summary', summary);
+        data.set('content', content);
+        if(files?.[0]){
+            data.set('file', files?.[0]);
+        }
+        await fetch('http://localhost:4000/post', {
             method: 'PUT',
+            body: data,
 
-        })
+        });
+        setRedirect(true);
     }
     if (redirect){
-        return <Navigate to={'/'} />
+        return <Navigate to={'/post/'+id} />
 
     }
 

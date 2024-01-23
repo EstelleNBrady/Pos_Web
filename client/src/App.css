@@ -137,6 +137,28 @@ div.post-page div.content p{
   line-height: 1.6rem;
 
 }
+div.edit-row{
+  text-align: center;
+  margin-bottom: 20px;
+}
+div.post-page a.edit-btn{
+  background-color: #333;
+  display: inline-flex;
+  color: #fff;
+  align-items:center;
+  gap:5px;
+  padding:15px 30px;
+  border-radius: 5px;
+  padding: 15px;
+  text-decoration: none;
+}
+
+a svg{
+  height:20px;
+}
+
+
+
 
 
 

@@ -11,8 +11,6 @@ const multer= require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' })
 const fs = require('fs');
 
-
-
 const salt = bcrypt.genSaltSync(10);
 const secret = 'jfgosduft908erjfklsdf';
 
@@ -36,7 +34,6 @@ app.post('/register', async (req,res) => {
         res.status(400).json(e);
     }
 });
-
 
 app.post('/login', async (req,res) => {
     const {username, password} = req.body;
@@ -86,22 +83,45 @@ app.post('/post', uploadMiddleware.single('file'), async (req,res) =>{
             summary,
             content,
             cover:newPath,
-            author: info.id,
+            author:info.id,
         });
-        res.json({postDoc});
+        res.json(postDoc);
     });
-
-   
 });
 
 app.put('/post', uploadMiddleware.single('file'), async (req,res) =>{
-    res.json(req.file);
+    let newPath = null;
+    if(req.file){
+        const {originalname,path} = req.file;
+        const parts = originalname.split('.');
+        const ext = parts[parts.length -1];
+        newPath = path+'.'+ext;
+        fs.renameSync(path, newPath);
+    }
 
+    const {token} = req.cookies;
+    jwt.verify(token, secret, {}, async (err,info) => {
+        if(err) throw err;
+        const{id,title,summary,content}= req.body;
 
+        const postDoc = await Post.findById(id);
+        const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
+        if(!isAuthor) {
+            return res.status(400).json('you are not the author');
+        }
+        postDoc.title = title;
+        postDoc.summary = summary;
+        postDoc.content = content;
+        postDoc.cover = newPath ? newPath : postDoc.cover;
+        await postDoc.save();
+
+        res.json(postDoc);
+    });
 });
 
-app.get('/post', async (req, res) => {
-    res.json(await Post.find()
+app.get('/post', async (req,res) => {
+    res.json(
+        await Post.find()
         .populate('author', ['username'])
         .sort({createdAt: -1})
         .limit(20)
@@ -115,6 +135,6 @@ app.get('/post/:id', async (req, res) => {
 })
 
 app.listen(4000);
-//QG9imFK3jpJ9obxq
+//QG9imFK3jpJ9obx
 
 //mongodb+srv://blog:ksn3TK8GYLOOxqI1@cluster0.zv4ffnn.mongodb.net/?retryWrites=true&w=majority

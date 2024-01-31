@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom"
-import {useEffect, useState, useContext} from "react";
+import React, {useEffect, useContext, useState} from "react";
 import {UserContext} from "./UserContext";
 
 export default function Header(){
@@ -10,7 +10,7 @@ export default function Header(){
         }).then(response => {
             response.json().then(userInfo => {
                 setUserInfo(userInfo);
-               
+                console.log(userInfo);
             });
         });
     }, []);
@@ -23,18 +23,17 @@ export default function Header(){
         setUserInfo(null);
     }
 
-    const username = userInfo?.username;
     return(      
         <header>
             <Link to="/" className="logo">MyBlog</Link>
             <nav>
-                {username && (
+                {userInfo && userInfo.username && (
                     <>
-                        <Link to="/create">Create new post</Link>
+                        {userInfo.role === 'admin' && <Link to="/create">Create new post</Link>}
                         <a onClick={logout}>Logout</a>
                     </>
                 )}
-                {!username && (
+                {!userInfo || !userInfo.username && (
                     <>
                         <Link to="/login">Login</Link>
                         <Link to="/register">Register</Link>
@@ -43,5 +42,5 @@ export default function Header(){
 
             </nav>
         </header>
-        );
+    );
 }

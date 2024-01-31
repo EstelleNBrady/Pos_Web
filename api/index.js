@@ -53,12 +53,27 @@ app.post('/login', async (req,res) => {
     }
 });
 
-app.get('/profile', (req,res) => {
-    const {token} = req.cookies;
-    jwt.verify(token, secret, {}, (err,info) => {
-        if(err) throw err;
-        res.json(info);
-    });
+app.get('/profile', async (req, res) => {
+    const { token } = req.cookies;
+    if (token) {
+        jwt.verify(token, secret, async (err, user) => {
+            if (err) {
+                res.status(401).json({ error: 'Invalid token' });
+            } else {
+                const userDoc = await User.findById(user.id);
+                if (userDoc) {
+                    res.json({
+                        username: userDoc.username,
+                        role: userDoc.role,
+                    });
+                } else {
+                    res.status(404).json({ error: 'User not found' });
+                }
+            }
+        });
+    } else {
+        res.json({});
+    }
 });
 
 app.post('/logout', (req,res) => {

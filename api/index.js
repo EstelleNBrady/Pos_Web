@@ -10,6 +10,8 @@ const cookieParser = require('cookie-parser');
 const multer= require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' })
 const fs = require('fs');
+const router = express.Router();
+
 
 const salt = bcrypt.genSaltSync(10);
 const secret = 'jfgosduft908erjfklsdf';
@@ -148,6 +150,27 @@ app.get('/post/:id', async (req, res) => {
     const postDoc = await Post.findById(id).populate('author', ['username']);
     res.json(postDoc);
 })
+
+app.delete('/post/:id', async (req, res) => {
+    const { token } = req.cookies;
+    if (!token) {
+        return res.status(401).json({ message: 'Authentication required' });
+    }
+
+    try {
+        const result = await Post.findByIdAndDelete(req.params.id);
+        if (!result) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+        console.log(`Post with id ${req.params.id} deleted`);
+        res.json({ message: 'Post successfully deleted' });
+    } catch (err) {
+        console.error(`Error when trying to delete post with id ${req.params.id}: ${err.message}`);
+        res.status(500).json({ message: 'Internal Server Error', error: err.toString() });
+    }
+});
+
+
 
 app.listen(4000);
 //QG9imFK3jpJ9obx

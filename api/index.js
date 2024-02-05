@@ -1,3 +1,4 @@
+// index.js
 const express = require('express');
 const cors = require('cors');
 const mongoose = require("mongoose");
@@ -147,9 +148,20 @@ app.get('/post', async (req,res) => {
 
 app.get('/post/:id', async (req, res) => {
     const {id} = req.params;
-    const postDoc = await Post.findById(id).populate('author', ['username']);
-    res.json(postDoc);
-})
+    try {
+        const postDoc = await Post.findById(id)
+        .populate('author', ['username']) // Populating post author
+        .populate('comments.author', 'username'); // Populating comments' author usernames
+        if (!postDoc) {
+            return res.status(404).send('Post not found');
+        }
+        res.json(postDoc);
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        res.status(500).json({ message: 'Error fetching post details', error: error.message });
+    }
+});
+
 
 app.delete('/post/:id', async (req, res) => {
     const { token } = req.cookies;
@@ -169,6 +181,50 @@ app.delete('/post/:id', async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error', error: err.toString() });
     }
 });
+// Part of index.js
+app.post('/post/:id/comment', async (req, res) => {
+    const { id } = req.params;
+    const { content } = req.body; // Assume the user's ID is either in the body or extracted from a session/token
+    const { userId } = req; // This should come from your authentication middleware/session
+
+    if (!content) {
+        return res.status(400).json({ message: 'Comment content cannot be empty' });
+    }
+
+    try {
+        const post = await Post.findById(id);
+        if (!post) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+        // Add the comment to the post
+        post.comments.push({ content, author: userId }); // Assuming userId is available
+        await post.save();
+        res.status(201).json(post);
+    } catch (error) {
+        console.error('Error adding comment:', error);
+        res.status(500).json({ message: 'Error adding comment', error: error.message });
+    }
+});
+// Part of index.js
+app.delete('/post/:postId/comment/:commentId', async (req, res) => {
+    const { postId, commentId } = req.params;
+
+    try {
+        const post = await Post.findById(postId);
+        if (!post) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+        // Remove the comment from the post
+        post.comments = post.comments.filter(comment => comment._id.toString() !== commentId);
+        await post.save();
+        res.json({ message: 'Comment deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting comment:', error);
+        res.status(500).json({ message: 'Error deleting comment', error: error.message });
+    }
+});
+
+
 
 
 

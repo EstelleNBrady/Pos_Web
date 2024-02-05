@@ -1,4 +1,4 @@
-// User.js
+// api's User.js
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 

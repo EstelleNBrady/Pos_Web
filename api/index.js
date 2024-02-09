@@ -1,4 +1,3 @@
-// index.js
 const express = require('express');
 const cors = require('cors');
 const mongoose = require("mongoose");
@@ -8,21 +7,30 @@ const bcrypt = require('bcryptjs');
 const app = express();
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-const multer= require('multer');
+const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' })
 const fs = require('fs');
-const router = express.Router();
-
 
 const salt = bcrypt.genSaltSync(10);
 const secret = 'jfgosduft908erjfklsdf';
 
-app.use(cors({credentials:true,origin:'http://localhost:3000'}));
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json());
 app.use(cookieParser());
-app.use('/uploads', express.static(__dirname+'/uploads'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 mongoose.connect('mongodb+srv://blog:ksn3TK8GYLOOxqI1@cluster0.zv4ffnn.mongodb.net/?retryWrites=true&w=majority');
 
+// Authentication Middleware
+const authenticateToken = (req, res, next) => {
+    const token = req.cookies.token;
+    if (!token) return res.sendStatus(401);
+
+    jwt.verify(token, secret, (err, user) => {
+        if (err) return res.sendStatus(403);
+        req.userId = user.id;
+        next();
+    });
+};
 app.post('/register', async (req,res) => {
     const {username,password} = req.body;
     try{
@@ -181,11 +189,10 @@ app.delete('/post/:id', async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error', error: err.toString() });
     }
 });
-// Part of index.js
-app.post('/post/:id/comment', async (req, res) => {
+app.post('/post/:id/comment', authenticateToken, async (req, res) => {
     const { id } = req.params;
-    const { content } = req.body; // Assume the user's ID is either in the body or extracted from a session/token
-    const { userId } = req; // This should come from your authentication middleware/session
+    const { content } = req.body;
+    const userId = req.userId; // Now this is set by the authenticateToken middleware
 
     if (!content) {
         return res.status(400).json({ message: 'Comment content cannot be empty' });
@@ -196,8 +203,7 @@ app.post('/post/:id/comment', async (req, res) => {
         if (!post) {
             return res.status(404).json({ message: 'Post not found' });
         }
-        // Add the comment to the post
-        post.comments.push({ content, author: userId }); // Assuming userId is available
+        post.comments.push({ content, author: userId });
         await post.save();
         res.status(201).json(post);
     } catch (error) {

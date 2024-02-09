@@ -1,3 +1,4 @@
+//indexPage.js
 import Post from "../Post";
 import {useEffect, useState} from "react";
 

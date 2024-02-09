@@ -10,6 +10,9 @@ export default function PostPage() {
     const { userInfo } = useContext(UserContext);
     const { id } = useParams();
     const navigate = useNavigate();
+    const { id: postId } = useParams();
+
+    
 
     useEffect(() => {
         fetchPost();
@@ -37,29 +40,30 @@ export default function PostPage() {
         })
         .then(response => response.json())
         .then(() => {
-            setComment('um hi');
+            setComment('Write a comment..');
             fetchPost(); // Refresh comments
         })
         .catch(error => console.error('Error posting comment:', error));
     };
 
-    const handleDeleteComment = (commentId) => {
-        if (window.confirm('Are you sure you want to delete this comment?')) {
-            fetch(`http://localhost:4000/comment/${commentId}`, {
-                method: 'DELETE',
-                credentials: 'include'
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('Comment deleted successfully');
-                    fetchPost(); // Refresh comments
-                } else {
-                    alert('Error deleting comment');
-                }
-            })
-            .catch(error => console.error('Error deleting comment:', error));
-        }
-    };
+    // This is the function you call when clicking the delete button for a comment
+const handleDeleteComment = (commentId) => {
+    if (window.confirm('Are you sure you want to delete this comment?')) {
+        fetch(`http://localhost:4000/post/${postId}/comment/${commentId}`, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Comment deleted successfully');
+                fetchPost(); // Refresh comments
+            } else {
+                alert('Error deleting comment');
+            }
+        })
+        .catch(error => console.error('Error deleting comment:', error));
+    }
+};
 
     const handleDelete = () => {
         if (window.confirm('Are you sure you want to delete this post?')) {

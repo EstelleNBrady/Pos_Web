@@ -25,7 +25,7 @@ export default function Header(){
 
     return(      
         <header>
-            <Link to="/" className="logo">MyBlog</Link>
+            <Link to="/" className="logo">Jessica's Blog | Home</Link>
             <nav>
                 {userInfo && userInfo.username && (
                     <>

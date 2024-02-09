@@ -211,18 +211,29 @@ app.post('/post/:id/comment', authenticateToken, async (req, res) => {
         res.status(500).json({ message: 'Error adding comment', error: error.message });
     }
 });
-// Part of index.js
-app.delete('/post/:postId/comment/:commentId', async (req, res) => {
+app.delete('/post/:postId/comment/:commentId', authenticateToken, async (req, res) => {
     const { postId, commentId } = req.params;
+
+    console.log(`Deleting comment ${commentId} from post ${postId}`);
 
     try {
         const post = await Post.findById(postId);
         if (!post) {
+            console.log('Post not found');
             return res.status(404).json({ message: 'Post not found' });
         }
-        // Remove the comment from the post
-        post.comments = post.comments.filter(comment => comment._id.toString() !== commentId);
+
+        const commentIndex = post.comments.findIndex(comment => comment._id.toString() === commentId);
+        if (commentIndex === -1) {
+            console.log('Comment not found');
+            return res.status(404).json({ message: 'Comment not found' });
+        }
+
+        // Remove the comment and log the operation
+        post.comments.splice(commentIndex, 1);
         await post.save();
+
+        console.log(`Comment ${commentId} deleted successfully`);
         res.json({ message: 'Comment deleted successfully' });
     } catch (error) {
         console.error('Error deleting comment:', error);

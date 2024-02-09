@@ -1,3 +1,4 @@
+//header.js
 import {Link} from "react-router-dom"
 import React, {useEffect, useContext, useState} from "react";
 import {UserContext} from "./UserContext";
@@ -22,6 +23,12 @@ export default function Header(){
         });
         setUserInfo(null);
     }
+    function about(){
+        fetch('http://localhost:4000/about ', {
+            credentials: 'include',
+            method:  'POST',
+        });
+    }
 
     return(      
         <header>
@@ -30,11 +37,13 @@ export default function Header(){
                 {userInfo && userInfo.username && (
                     <>
                         {userInfo.role === 'admin' && <Link to="/create">Create new post</Link>}
+                        <Link to="/about">About</Link>
                         <a onClick={logout}>Logout</a>
                     </>
                 )}
                 {!userInfo || !userInfo.username && (
                     <>
+                        <Link to="/about">About</Link>
                         <Link to="/login">Login</Link>
                         <Link to="/register">Register</Link>
                     </>

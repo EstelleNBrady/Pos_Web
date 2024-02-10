@@ -114,7 +114,7 @@ const handleDeleteComment = (commentId) => {
                             onChange={(e) => setComment(e.target.value)}
                             placeholder="Write a comment..."
                         />
-                        <button type="submit">Post Comment</button>
+                        <button type="submit">Submit</button>
                     </form>
                 )}
                 {postInfo.comments && postInfo.comments.map(comment => (

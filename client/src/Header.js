@@ -32,11 +32,11 @@ export default function Header(){
 
     return(      
         <header>
-            <Link to="/" className="logo">Jessica's Blog | Home</Link>
+            <Link to="/" className="logo">Confidence In Motion  | Home</Link>
             <nav>
                 {userInfo && userInfo.username && (
                     <>
-                        {userInfo.role === 'admin' && <Link to="/create">Create new post</Link>}
+                        {userInfo.role === 'admin' && <Link to="/create">Create New Post</Link>}
                         <Link to="/about">About</Link>
                         <a onClick={logout}>Logout</a>
                     </>

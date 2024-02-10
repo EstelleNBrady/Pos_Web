@@ -1,8 +1,31 @@
+// AboutPage.js
 import React from 'react';
+import '../AboutPage.css';
 
 export default function AboutPage() {
   return (
-    <div className="about-page">
+    <div className="about-container">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet" />
+      <p id='head1' className='header'>Body Positivity + Fitness</p>
+      <p id='head2' className='header'>=</p>
+      <p id='head3' className='header'>Confidence in Motion</p>
+      <p id='head4' className='header'></p>
+      <p id='head5' className='header'></p>
+      <p id='head6' className='header'></p>
+      <div className='light x1'></div>
+      <div className='light x2'></div>
+      <div className='light x3'></div>
+      <div className='light x4'></div>
+      <div className='light x5'></div>
+      <div className='light x6'></div>
+      <div className='light x7'></div>
+      <div className='light x8'></div>
+      <div className='light x9'></div>
+      <div className="about-page">
+        <p>
+                                        
+
+        </p>
       <h1>About This Blog</h1>
       <p>
         Welcome to Jessica's Blog. This blog is dedicated to sharing insights, stories, 
@@ -31,5 +54,9 @@ export default function AboutPage() {
         or reach out via email at contact@jessicasblog.com.
       </p>
     </div>
+      {/* ...other elements... */}
+    </div>
   );
-}
+};
+
+

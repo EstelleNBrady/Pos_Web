@@ -12,15 +12,17 @@ export default function Header(){
             response.json().then(userInfo => {
                 setUserInfo(userInfo);
                 console.log(userInfo);
+                
             });
         });
-    }, []);
+    }, [userInfo]);
 
     function logout(){
         fetch('http://localhost:4000/logout', {
             credentials: 'include',
             method:  'POST',
         });
+        window.location.reload();
         setUserInfo(null);
     }
     function about(){
@@ -30,7 +32,11 @@ export default function Header(){
         });
     }
 
-    return(      
+
+
+    return(
+
+     
         <header>
             <Link to="/" className="logo">Confidence In Motion  | Home</Link>
             <nav>
@@ -51,5 +57,7 @@ export default function Header(){
 
             </nav>
         </header>
+        
     );
+    
 }

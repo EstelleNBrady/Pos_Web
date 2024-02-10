@@ -17,6 +17,12 @@ export default function IndexPage(){
         <div className="about-container">
             
         <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet" />
+        <p id='head1' className='header'>Body Positivity + Fitness</p>
+      <p id='head2' className='header'>=</p>
+      <p id='head3' className='header'>Confidence in Motion</p>
+      <p id='head4' className='header'></p>
+      <p id='head5' className='header'></p>
+      <p id='head6' className='header'></p>
         <div className='light x1'></div>
         <div className='light x2'></div>
         <div className='light x3'></div>

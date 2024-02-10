@@ -352,9 +352,8 @@ button:focus{
   .about-page {
     max-width: 960px;
     width: 100%;
-    padding: 20px; /* Add padding for spacing around the text */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    margin-top: 50px; /* Adjust as necessary to push content further down */
+ 
     text-align: center; /* Center the text within the about page section */
   }
   

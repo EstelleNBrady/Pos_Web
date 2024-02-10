@@ -2,6 +2,7 @@
 import {useState, useContext} from "react";
 import {Navigate} from "react-router-dom";
 import {UserContext} from "../UserContext";
+import IndexPage from "./IndexPage";
 
 export default function LoginPage(){
     const [username,setUsername] = useState('');
@@ -18,10 +19,10 @@ export default function LoginPage(){
             credentials: 'include',
         });
         if (response.ok){
-            response.json().then(userInfo => {
+            const userInfo = await response.json();
                 setUserInfo(userInfo);
                 setRedirect(true);
-            });
+            
             
 
         }else{
@@ -29,7 +30,7 @@ export default function LoginPage(){
         }
     }
     if(redirect){
-        return <Navigate to={'/'} />
+        return( <Navigate to={'/'} /> )
     }
     return(
         <form className="login" onSubmit={login}>

@@ -9,7 +9,7 @@ img{
 }
 
 main{
-  padding: 10px;
+  padding: px;
   max-width: 960px;
   margin: 0 auto;
 }
@@ -17,7 +17,7 @@ header{
   display:flex;
   justify-content:space-between;
   margin-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 180px;
   align-items: center;
 }
 header a{
@@ -27,12 +27,13 @@ header a{
 }
 header a.logo{
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 header nav{
   display:flex;
   gap: 15px;
 }
+
 
 div.post{
   display:grid;

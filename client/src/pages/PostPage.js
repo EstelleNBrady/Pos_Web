@@ -106,28 +106,29 @@ const handleDeleteComment = (commentId) => {
             <div className="content" dangerouslySetInnerHTML={{ __html: postInfo.content }} />
 
             <div className="comments-section">
-                <h2>Comments</h2>
-                {userInfo && (
-                    <form onSubmit={handleCommentSubmit}>
-                        <textarea
-                            value={comment}
-                            onChange={(e) => setComment(e.target.value)}
-                            placeholder="Write a comment..."
-                        />
-                        <button type="submit">Submit</button>
-                    </form>
-                )}
-                {postInfo.comments && postInfo.comments.map(comment => (
-    <div key={comment._id} className="comment">
-        <p>{comment.content}</p>
-        <small>by {comment.author?.username || 'Unknown'}</small>
-        {userInfo && userInfo.role === 'admin' && (
-            <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
-        )}
-    </div>
-))}
-
-            </div>
+    <h2>Comments</h2>
+    {userInfo.role == 'user' || userInfo.role == 'admin' ? (
+        <form onSubmit={handleCommentSubmit}>
+            <textarea
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="Write a comment..."
+            />
+            <button type="submit">Post Comment</button>
+        </form>
+    ) : (
+        <p>You must be logged in to post a comment.</p>
+    )}
+    {postInfo.comments && postInfo.comments.map(comment => (
+        <div key={comment._id} className="comment">
+            <p>{comment.content}</p>
+            <small>by {comment.author.username}</small>
+            {userInfo && userInfo.role === 'admin' && (
+                <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+            )}
+        </div>
+    ))}
+</div>
         </div>
     );
 }

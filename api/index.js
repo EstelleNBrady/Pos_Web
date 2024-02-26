@@ -13,11 +13,11 @@ const fs = require('fs');
 const path = require('path');
 
 const salt = bcrypt.genSaltSync(10);
-const secret = 'jfgosduft908erjfklsdf';
+const secret = 'jfgosduft908erjfklsd';
 
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:3000', 'https://dynamicconfidence-78bac109c511.herokuapp.com/']
+    origin: ['http://localhost:3000', 'https://dynamicconfidence-78bac109c511.herokuapp.com']
   }));
 app.use(express.json());
 app.use(cookieParser());

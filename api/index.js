@@ -15,7 +15,10 @@ const path = require('path');
 const salt = bcrypt.genSaltSync(10);
 const secret = 'jfgosduft908erjfklsdf';
 
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({
+    credentials: true,
+    origin: ['http://localhost:3000', 'https://dynamicconfidence-78bac109c511.herokuapp.com/']
+  }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));

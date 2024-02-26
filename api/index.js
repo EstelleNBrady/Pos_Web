@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' })
 const fs = require('fs');
+const path = require('path');
 
 const salt = bcrypt.genSaltSync(10);
 const secret = 'jfgosduft908erjfklsdf';
@@ -241,11 +242,20 @@ app.delete('/post/:postId/comment/:commentId', authenticateToken, async (req, re
     }
 });
 
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// The "catchall" handler: for any request that doesn't match one above,
+// send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
 
 
-
-
-app.listen(4000);
 //QG9imFK3jpJ9obx
 
 //mongodb+srv://blog:ksn3TK8GYLOOxqI1@cluster0.zv4ffnn.mongodb.net/?retryWrites=true&w=majority

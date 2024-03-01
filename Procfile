@@ -1,1 +1,1 @@
-web: npm run start-server
+web: cd api && nodemon index.js

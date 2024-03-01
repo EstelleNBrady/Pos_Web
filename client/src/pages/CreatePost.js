@@ -26,7 +26,7 @@ async function createNewPost(ev){
 
 
 
-        const response=await fetch('http://localhost:4000/post', {
+        const response=await fetch('https://dynamicconfidence-78bac109c511.herokuapp.com/post', {
             method: 'POST',
             body: data,
             credentials: 'include',

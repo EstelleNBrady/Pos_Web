@@ -6,7 +6,7 @@ export default function IndexPage(){
     
     const [posts,setPosts] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:4000/post').then(response => {
+        fetch('https://dynamicconfidence-78bac109c511.herokuapp.com/post').then(response => {
             response.json().then(posts => {
                 setPosts(posts);
             });

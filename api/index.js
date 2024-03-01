@@ -17,7 +17,7 @@ const secret = 'jfgosduft908erjfklsd';
 
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:3000', 'https://dynamicconfidence-78bac109c511.herokuapp.com']
+    origin: ['https://dynamicconfidence-78bac109c511.herokuapp.com']
   }));
 app.use(express.json());
 app.use(cookieParser());

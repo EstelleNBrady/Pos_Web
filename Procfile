@@ -1,1 +1,1 @@
-web: cd api && nodemon index.js
+web: yarn start

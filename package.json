@@ -12,7 +12,7 @@
     "react-router-dom": "^6.21.3"
   },
   "scripts": {
-    "start": "concurrently \"npm run start-server\" \"npm run start-client\"",
+    "start": "cd api && node index.js",
     "start-server": "cd api && nodemon index.js",
     "start-client": "cd client && npm start",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && cd client && npm install && npm run build"

@@ -5,7 +5,7 @@ export default function Post({_id,title,summary,cover,content,createdAt,author})
     <div className="post">
     <div className="image">
       <Link to={`/post/${_id}`}>
-      <img src={'https://dynamicconfidence-78bac109c511.herokuapp.com/'+cover} alt="" />
+      <img src={'https://www.dynamiconfidence.com/'+cover} alt="" />
       </Link>
     </div>
     <div className="texts">

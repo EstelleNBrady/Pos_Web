@@ -20,7 +20,7 @@ export default function PostPage() {
 
 
     const fetchPost = () => {
-        fetch(`https://dynamicconfidence-78bac109c511.herokuapp.com/post/${id}`)
+        fetch(`https://www.dynamiconfidence.com/post/${id}`)
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched post data:', data);
@@ -32,7 +32,7 @@ export default function PostPage() {
     const handleCommentSubmit = (e) => {
         e.preventDefault();
         if (!comment.trim()) return;
-        fetch(`https://dynamicconfidence-78bac109c511.herokuapp.com/post/${id}/comment`, {
+        fetch(`https://www.dynamiconfidence.com/post/${id}/comment`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -49,7 +49,7 @@ export default function PostPage() {
     // This is the function you call when clicking the delete button for a comment
 const handleDeleteComment = (commentId) => {
     if (window.confirm('Are you sure you want to delete this comment?')) {
-        fetch(`https://dynamicconfidence-78bac109c511.herokuapp.com/post/${postId}/comment/${commentId}`, {
+        fetch(`https://www.dynamiconfidence.com/post/${postId}/comment/${commentId}`, {
             method: 'DELETE',
             credentials: 'include'
         })
@@ -67,7 +67,7 @@ const handleDeleteComment = (commentId) => {
 
     const handleDelete = () => {
         if (window.confirm('Are you sure you want to delete this post?')) {
-            fetch(`https://dynamicconfidence-78bac109c511.herokuapp.com/post/${id}`, {
+            fetch(`https://www.dynamiconfidence.com/post/${id}`, {
                 method: 'DELETE',
                 credentials: 'include'
             })
@@ -101,7 +101,7 @@ const handleDeleteComment = (commentId) => {
                 </div>
             )}
             <div className="image">
-                <img src={`https://dynamicconfidence-78bac109c511.herokuapp.com/${postInfo.cover}`} alt={postInfo.title}/>
+                <img src={`https://www.dynamiconfidence.com/${postInfo.cover}`} alt={postInfo.title}/>
             </div>
             <div className="content" dangerouslySetInnerHTML={{ __html: postInfo.content }} />
 

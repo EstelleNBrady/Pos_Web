@@ -6,7 +6,7 @@ import {UserContext} from "./UserContext";
 export default function Header(){
     const {setUserInfo, userInfo} = useContext(UserContext);
     useEffect(() => {
-        fetch('https://dynamicconfidence-78bac109c511.herokuapp.com/profile',{
+        fetch('https://www.dynamiconfidence.com/profile',{
             credentials:'include',
         }).then(response => {
             response.json().then(userInfo => {
@@ -18,7 +18,7 @@ export default function Header(){
     }, [userInfo]);
 
     function logout(){
-        fetch('https://dynamicconfidence-78bac109c511.herokuapp.com/logout', {
+        fetch('https://www.dynamiconfidence.com/logout', {
             credentials: 'include',
             method:  'POST',
         });
@@ -26,7 +26,7 @@ export default function Header(){
         setUserInfo(null);
     }
     function about(){
-        fetch('https://dynamicconfidence-78bac109c511.herokuapp.com/about ', {
+        fetch('https://www.dynamiconfidence.com/about ', {
             credentials: 'include',
             method:  'POST',
         });
@@ -38,7 +38,7 @@ export default function Header(){
 
      
         <header>
-            <Link to="/" className="logo">Confidence In Motion  | Home</Link>
+            <Link to="/" className="logo">Dynamic Confidence  | Home</Link>
             <nav>
                 {userInfo && userInfo.username && (
                     <>

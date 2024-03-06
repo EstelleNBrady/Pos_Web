@@ -6,7 +6,7 @@ export default function IndexPage(){
     
     const [posts,setPosts] = useState([]);
     useEffect(() => {
-        fetch('https://dynamicconfidence-78bac109c511.herokuapp.com/post').then(response => {
+        fetch('https://www.dynamiconfidence.com/post').then(response => {
             response.json().then(posts => {
                 setPosts(posts);
             });
@@ -17,9 +17,9 @@ export default function IndexPage(){
         <div className="about-container">
             
         <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet" />
-        <p id='head1' className='header'>Body Positivity + Fitness</p>
-      <p id='head2' className='header'>=</p>
-      <p id='head3' className='header'>Confidence in Motion</p>
+        <p id='head1' className='header'>Body Positivity</p>
+      <p id='head2' className='header'>Fitness</p>
+      <p id='head3' className='header'>Dynamic Confidence</p>
       <p id='head4' className='header'></p>
       <p id='head5' className='header'></p>
       <p id='head6' className='header'></p>

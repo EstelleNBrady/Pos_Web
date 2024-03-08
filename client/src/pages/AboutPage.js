@@ -28,24 +28,37 @@ export default function AboutPage() {
         </p>
       <h1>About This Blog</h1>
       <p>
-        Jessica fills in this section
+        This blog is for people who want to get into fitness or are into fitness but want
+a body neutral and body positive place to do that. 
       </p>
       <p>
-        and this one
+        The fitness industry can be very fat-phobic
+and this is a safe place to find workouts but also discuss anything fitness related without it
+having to pertain to your body size. 
       </p>
       <p>
-        and this one 
+        You can post under any of the blogs I put out, express
+yourself (just make sure to keep it kind)!
       </p>
       <h2>About Me</h2>
       <p>
-        I'm Jessica, I like Kevin
+        My name is Jessica and I’m a certified personal trainer along with a certified group fitness
+instructor based out of St. Petersburg, Florida. I have always loved fitness because it makes me
+feel strong, confident, and athletic. I have instructed numerous group fitness classes over the
+years including bootcamp, tabata, total body toning, core, cardio pilates, and traditional pilates
+classes. I have also worked with numerous clients one on one to help them reach their goals. I
+am also a big runner and I have ran a handful of marathons and half marathons.
       </p>
       <p>
-        and Estelle
+        I believe
+exercise should be a fun challenge, and that we should do it out of love and appreciation for our
+bodies, not because we hate our bodies. I am hoping to help people change how they see
+fitness and show them ways of exercise that will make them feel more powerful than ever
+before.
       </p>
       <h2>Contact</h2>
       <p>
-        @KevinsHouse
+        bradyjessica58@gmail.com to book a free consultation and an appointment
       </p>
     </div>
       {/* ...other elements... */}

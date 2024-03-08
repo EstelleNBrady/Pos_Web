@@ -113,7 +113,7 @@ input{
 
 /* Specific styles for the comment section if needed */
 .comments-section {
-  width: 5%; /* Adjust width as needed */
+  width: 35%; /* Adjust width as needed */
   margin-top: 5px; /* Add some space above the comment buttons */
 }
 

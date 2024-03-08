@@ -93,10 +93,10 @@ const handleDeleteComment = (commentId) => {
             {userInfo && userInfo.role === 'admin' && (
                 <div className="admin-actions">
                     <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
-                        Edit this post
+                        Edit
                     </Link>
                     <button onClick={handleDelete} className="delete-btn">
-                        Delete Post
+                        Delete
                     </button>
                 </div>
             )}

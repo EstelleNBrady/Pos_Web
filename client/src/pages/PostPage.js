@@ -117,7 +117,7 @@ const handleDeleteComment = (commentId) => {
             <button type="submit">Post</button>
         </form>
     ) : (
-        <p>You must be logged in to post a comment.</p>
+        <p>Login to comment.</p>
     )}
     {postInfo.comments && postInfo.comments.map(comment => (
         <div key={comment._id} className="comment">

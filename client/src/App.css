@@ -108,12 +108,11 @@ input{
 /* Adjusting button styles */
 .delete-btn, .edit-btn {
   margin: 10px; /* Add margin around buttons to ensure they don't overlap */
-  display: inline-block; /* Display buttons inline */
 }
 
 /* Specific styles for the comment section if needed */
 .comments-section {
-  width: 35%; /* Adjust width as needed */
+  width: 5%; /* Adjust width as needed */
   margin-top: 5px; /* Add some space above the comment buttons */
 }
 

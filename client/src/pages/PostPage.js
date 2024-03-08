@@ -96,7 +96,7 @@ const handleDeleteComment = (commentId) => {
                         Edit this post
                     </Link>
                     <button onClick={handleDelete} className="delete-btn">
-                          Delete Post
+                        Delete Post
                     </button>
                 </div>
             )}
@@ -114,7 +114,7 @@ const handleDeleteComment = (commentId) => {
                 onChange={(e) => setComment(e.target.value)}
                 placeholder="Write a comment..."
             />
-            <button type="submit">     Post     </button>
+            <button type="submit">Post</button>
         </form>
     ) : (
         <p>You must be logged in to post a comment.</p>

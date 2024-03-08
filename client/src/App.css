@@ -107,6 +107,7 @@ input{
 }
 /* Adjusting button styles */
 .delete-btn, .edit-btn {
+  text-align: center;
   margin: 10px; /* Add margin around buttons to ensure they don't overlap */
 }
 
